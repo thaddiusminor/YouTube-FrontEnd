@@ -7,10 +7,8 @@ function DisplaySearch(props) {
 
     return (
         <div class="topnav">
-        <a class="active" href="https://google.com">Home</a>
         <center>
-        <input type="text" placeholder='search'> 
-        </input>
+        <input type="text" placeholder='search' onChange= {() =>{} }/> {/*onChange event handler to save input as state*/}
         <button id='btn'>Submit</button>
         </center>
         </div>
