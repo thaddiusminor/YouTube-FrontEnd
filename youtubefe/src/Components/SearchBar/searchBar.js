@@ -5,13 +5,18 @@ import {Paper, TextField} from '@material-ui/core';
 
 function DisplaySearch(props) {
 
-       const [search, setSearch] =useState({search:""} )
+       const [search, setSearch] =useState({
+           search: ""
+       })
         
-        
-        
-      const handleChange = (event) => {
-          setSearch(event.target.value)
-      }
+    
+    
+function handle(e){
+    const newsearch={}
+    newsearch[e.target.id]= e.target.value
+    setSearch(newsearch)
+    console.log(newsearch)
+}
         
     //    const handleSubmit = (event) => {
             
@@ -26,7 +31,7 @@ function DisplaySearch(props) {
         return (
             <Paper elevation={6} style={{padding: '25px'}}> 
             <form>
-            <TextField fullWidth label="Serach..."  onChange={handleChange} />
+            <TextField fullWidth label="Serach..."  input onChange={(e)=>handle(e)} id="text"/>
                 </form>
                 </Paper>
      

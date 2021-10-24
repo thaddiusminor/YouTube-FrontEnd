@@ -19,6 +19,13 @@ function handle(e){
     console.log(newcomment)
 }
   
+
+// function submit(e){
+//   e.preventDefault();
+//   axios.post(`http://localhost:5000/api/comments/5635`{
+//   .then(response => setNewComment(response.data) 
+// }
+// }
       
         return (
           <div>
