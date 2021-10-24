@@ -15,7 +15,9 @@ import axios from 'axios';
         <div>
            {comments.map( (comment) => {
                return(
-                   <p>{comment.text}</p>
+                <div class="container">
+                {comment.text}
+              </div>
                )
            })} 
         </div>

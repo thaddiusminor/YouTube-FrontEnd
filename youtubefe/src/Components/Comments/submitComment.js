@@ -5,22 +5,28 @@ import 'bootstrap/dist/css/bootstrap.css';
 
     
 const SubmitComment= (props) => {
-    const newComment= ""
+    const [comment, setNewComment]=useState({
+      text: "", 
+      videoId: "", 
+
+    })
 
     
-const handleChange = (event) => {
-    console.log(newComment)
+function handle(e){
+    const newcomment={}
+    newcomment[e.target.id]= e.target.value
+    setNewComment(newcomment)
+    console.log(newcomment)
 }
-    
+  
       
         return (
+          <div>
             <form>
-            <label>
-              Comment:
-              <input type="text" placeholder="name" onChange={handleChange}/>
-            </label>
-            <input type="submit" placeholder="Submit" />
-          </form>
+            <input onChange={(e)=>handle(e)} id="text"/>
+            <button />
+            </form>
+          </div>
         );
       }
 

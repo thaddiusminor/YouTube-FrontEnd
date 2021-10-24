@@ -11,9 +11,9 @@ const Like= (props) => {
     
     
      return (
-        <div>
-          <button>Like</button> <button>Dislike</button>
-        </div>
+        <>
+          <button>Like</button> <span></span> <button>Dislike</button>
+        </>
      );
         }
         export default Like; 
