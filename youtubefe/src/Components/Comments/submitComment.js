@@ -5,37 +5,38 @@ import 'bootstrap/dist/css/bootstrap.css';
 
     
 const SubmitComment= (props) => {
-    const [comment, setNewComment]=useState({
-      text: "", 
-      videoId: "", 
+    const [comment, setNewComment]=useState("");
 
-    })
-
-    
 function handle(e){
-    const newcomment={}
-    newcomment[e.target.id]= e.target.value
-    setNewComment(newcomment)
-    console.log(newcomment)
+    setNewComment(e.target.value)
+    console.log(comment)
 }
+
   
 
-// function submit(e){
-//   e.preventDefault();
-//   axios.post(`http://localhost:5000/api/comments/5635`{
-//   .then(response => setNewComment(response.data) 
-// }
-// }
-      
+const submitHandler = e => {
+e.preventDefault();
+const newComment ={
+  text: comment,
+  videoId: "5635"
+}
+axios.post(`http://localhost:5000/api/comments/`, newComment)
+    .then(response => console.log(response.data))
+    .catch(error => {
+      console.log(error)
+    })
+}
+
         return (
           <div>
             <form>
             <input onChange={(e)=>handle(e)} id="text"/>
-            <button />
+            <button onClick={submitHandler} id='btn'> Submit </button> 
             </form>
           </div>
         );
       }
+
 
 
 

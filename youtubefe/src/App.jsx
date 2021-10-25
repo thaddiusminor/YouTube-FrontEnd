@@ -12,38 +12,32 @@ import youtube from './Components/Youtube/youtube';
 import VideoItem from './Components/VideoItem/videoItem';
 import VideoDetails from './Components/VideoDetails/videoDetails';
 import VideoList from './Components/VideoItem/videoList';
+import { Search } from '@mui/icons-material';
+import RelatedVid from "./Components/RelatedVideos/relatedVideos"
+
+
  
 
 const App = (props) => {
   const {videos, setVideos}= useState([]);
+  const [ selectedVideo, setSelectedVideo ] = useState("eIrMbAQSU34")
 
-  // useEffect(); {
-  //   handleSubmit('')
-  // }
-
-  const onVideoSelect = (videos) => {
-      setVideos({selectedVideo: videos});
-  }
+  let api_key ="AIzaSyBF8e9Uzq6fE2zMK0YrnfaEvNNI8AqJ_f8";
+  let video_http = "https://www.googleapis.com/youtube/v3/videos";
+  let channel_http= "https://www.googleapis.com/youtube/v3/channels?";
   
-
   const handleSubmit = async (search) => {
-  const response = await youtube.search("ramtoo", 5);
-  console.log(response)
-  //   params: { 
-  //     part:'snippet', 
-  //     maxResults: 5, 
-  //     key: 'AIzaSyBF8e9Uzq6fE2zMK0YrnfaEvNNI8AqJ_f8',
-  //     q: search
-  //   }
-  // });
-
-  setVideos({videos:response.data.items, vidoes:response.data.items[0] });
-  }
-if(!props){
-  return null; 
-
+const response = await youtube.get('search', { 
+params: {
+  part:'snippet',
+  maxResults: 5, 
+  key: 'AIzaSyBF8e9Uzq6fE2zMK0YrnfaEvNNI8AqJ_f8', 
+  q: search,
 }
-
+  }); 
+  console.log(response)
+}
+ 
 
 
 return(  
@@ -53,16 +47,23 @@ return(
    <Grid item xs={12}>
      <Grid container spacing={16}> 
      <Grid item xs={12}> 
-     <DisplaySearch onFormSubmit={handleSubmit}/>
+     <DisplaySearch autocompleteVideoSelected={(videoId) => {
+       console.log(videoId)
+       if (videoId.kind === "youtube#playlist") {
+         setSelectedVideo(videoId.playlistId)
+       } else if (videoId.kind === "youtube#video") {
+         setSelectedVideo(videoId.videoId)
+       }
+     }}onFormSubmit={handleSubmit}/>
      </Grid>
      <Grid item xs={8}> 
-     <DisplayVideo video={setVideos}/>
+     <DisplayVideo videoId={selectedVideo} />
      </Grid>
      <Grid item xs={8}> 
      <Comment/>
      </Grid>
      <Grid item xs={8}> 
-     <SubmitComment/>
+     <SubmitComment />
      </Grid>
      <Grid item xs={4}>
        {/* <VideoList videos={videos} onVideoSelect={onVideoSelect}/> */}
@@ -71,6 +72,7 @@ return(
      </Grid>  
      </Grid> 
      </Grid> 
+     <RelatedVid videoId={selectedVideo} />
    </div> 
 );
 }
@@ -79,17 +81,5 @@ return(
 
 
 export default App; 
-//   return(
-            
-//     <div> 
-//      <YouTubeIcon />
-//      <DisplaySearch/> 
-//        <DisplayVideo/> 
-//        <Comment /> 
-//        <Like />
-//        <SubmitComment /> 
-        
-//     </div>
-//   );
-// }
+
 

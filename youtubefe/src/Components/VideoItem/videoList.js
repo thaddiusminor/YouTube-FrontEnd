@@ -2,17 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {Grid} from "@material-ui/core"
 import VideoItem from './videoItem'
 
-const VideoList = ({videos, onVideoSelect}) => {
-    const relatedVideos = videos.map((video, id) => <VideoItem  onVideoSelect={onVideoSelect}key={id} video={video}/> )
 
-    return (
+// const VideoList = ({ videos, onVideoSelect }) => {
+//   const listOfVideos = videos.map((video, id) => 
+//     <VideoItem onVideoSelect={onVideoSelect} key={id} video={video} />
 
-        <Grid container={10}>
 
-        {relatedVideos}
-        </Grid>
-    )
-}
-       
-  
-export default VideoList;
+//   return (
+//     <Grid container spacing={10}>
+//       {listOfVideos}
+//     </Grid>
+//   );
+// }
+
+// export default VideoList;
+    
